@@ -23,6 +23,14 @@ button{
     	text-shadow:0px 1px 0px #b23e35;
 
 }
+button:hover {
+	background-color:#eb675e;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
 
 
 .container {
@@ -85,26 +93,52 @@ button{
 }
 
 
- .remove {
+ .remove, .removeDone {
 
     float:right;
 }
-.markAsDone {
 
-   float:right;
+
+.markAsDone, #add {
+	-moz-box-shadow:inset 0px 39px 0px -24px #3dc21b;
+	-webkit-box-shadow:inset 0px 39px 0px -24px #3dc21b;
+	box-shadow:inset 0px 39px 0px -24px #3dc21b;
+	background-color:#44c767;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+
 }
-.myButton:hover {
-	background-color:#eb675e;
+.markAsDone{
+    float:right;
 }
-.myButton:active {
+.markAsDone:hover, #add:hover {
+	background-color:#5cbf2a;
+}
+.markAsDone:active, #add:active {
 	position:relative;
 	top:1px;
 }
-
-.lista {
+.lista, .listaklar {
 width:95%;
 margin:0 auto;
 font-size: 2em;
+}
+
+.listaklar {
+font-style: italic;
+text-decoration: line-through;
+color: red;
+opacity: 0.2;
 }
 
 .lista ol{
