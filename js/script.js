@@ -1,10 +1,11 @@
 function get_todos() {
-    var todos = [];
+    var todos = ["Strukturera upp din Todo-list",];
     var todos_str = localStorage.getItem('todo');
 
     if (todos_str !== null) {
         todos = JSON.parse(todos_str);
     }
+   // todos.push("Strukturera upp din Todo-list");
     return todos;
 }
 function get_done(){
@@ -77,15 +78,15 @@ function show() {
     for(var i=0; i<todos.length; i++) {
         html += '<li class="lista"> <span id="ID_';
         html += i +'">' + todos[i] + '</span><button class="markAsDone" id="';
-        html += i  + '">done</button>' + '<button class="remove" id="';
-        html += i  + '">delete</button></li>';
+        html += i  + '"><img src="gfx/check.png" width="10"></button>' + '<button class="remove" id="';
+        html += i  + '">X</button></li>';
     }
     html += '</ol>';
 
     html += '<ul>';
    for( i=0; i < done.length; i++) {
         html += '<li class="listaklar">' + done[i] + '<button class="removeDone" id="';
-        html += i  + '">delete</button></li>';
+        html += i  + '">X</button></li>';
    }
     html += '</ul>';
     document.getElementById('todos').innerHTML = html;
