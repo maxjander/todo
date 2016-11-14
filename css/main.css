@@ -1,3 +1,8 @@
+@media screen (max-width: 640px){
+
+
+
+}
 body {
     font-family: sans-serif;
     color: white;
@@ -158,6 +163,7 @@ text-decoration: line-through;
 color: lightgrey;
 opacity: 0.3;
 font-size: 1.4rem;
+padding: 4px;
 }
 
 .lista ol{
