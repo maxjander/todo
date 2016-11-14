@@ -1,5 +1,5 @@
 body {
-    background-color: tomato;
+    background-color: lightsalmon;
     font-family: sans-serif;
 
 }
@@ -39,13 +39,18 @@ button:active {
         margin: 0px;
 
 }
+#task {
+    width: 70%;
+    height:27px;
+
+}
 
 #topl {
     width:calc(100% - 40px);
     background-color: white;
     clear:both;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 2px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -55,7 +60,7 @@ button:active {
     background-color: white;
     clear:both;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 2px;
     text-align: center;
 }
 
@@ -67,7 +72,7 @@ button:active {
     background-color: white;
     clear: both;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 2px;
 
 }
 
@@ -76,7 +81,7 @@ button:active {
     background-color: white;
     clear:both;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 2px;
     text-align: right;
 }
 
@@ -87,7 +92,7 @@ button:active {
     display:0 auto;
     clear: both;
     margin: 20px 5px 20px 0px;
-    border-radius: 10px;
+    border-radius: 2px;
     padding: 20px;
 
 }

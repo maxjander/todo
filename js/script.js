@@ -19,32 +19,29 @@ function get_done(){
 }
 
 function add() {
-
     var task = document.getElementById('task').value;
     var todos = get_todos();
+
     if (task.length === 0 ){
       alert("Du måste skriva in något du skall göra, ifall du inte har något att göra så är denna sida onödig för dig");
-   }
-    else {
-    todos.push(task);
-    localStorage.setItem('todo', JSON.stringify(todos));
-
-    show();
-
-    return false;
-}
+      } else {
+            todos.push(task);
+            localStorage.setItem('todo', JSON.stringify(todos));
+            show();
+            return false;
+         }
 }
 
 function remove() {
-    var id = this.getAttribute('id');
-    var todos = get_todos();
-    todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos));
+var id = this.getAttribute('id');
+var todos = get_todos();
+   todos.splice(id, 1);
+   localStorage.setItem('todo', JSON.stringify(todos));
 
     show();
-
     return false;
 }
+
 function removeDone() {
     var id = this.getAttribute('id');
     var done = get_done();
@@ -52,7 +49,6 @@ function removeDone() {
     localStorage.setItem('done', JSON.stringify(done));
 
     show();
-
     return false;
 }
 
@@ -69,7 +65,6 @@ function markAsDone() {
     localStorage.setItem('todo', JSON.stringify(todos));
 
     show();
-
     return false;
 }
 
