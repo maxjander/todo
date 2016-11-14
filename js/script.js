@@ -97,29 +97,31 @@ function show() {
         html += '<li class="lista"> <span id="ID_';
         html += i +'">' + todos[i] + '</span>';
 
-        html += '<button class="markAsDone" id="';
-        html += i  + '"><img src="gfx/check.png" width="10"></button> ';
-        html+= '<button class="remove" id="';
-        html += i  + '"> <img src="gfx/close.png" width="10"></button>';
+        html += '<img src="gfx/check.png" class="markAsDone" id="' + i  + '">';
+        html+= ' <img src="gfx/close.png" class="remove" id="' + i  + '">';
+
         if (i > 0){
         html += '<img class="prio"id="';
         html += i +'" src=gfx/upp.png>';
         }
+
         if (i < todos.length - 1){
         html += '<img class="prioDown"id="' + i +'" src="gfx/ner.png">';
         }
+
+        html += '</li>';
     }
-    html += '</li></ol>';
+    html += '</ol>';
 
     html += '<ul>';
    for( i=0; i < done.length; i++) {
-        html += '<li class="listaklar">' + done[i] + '<button class="removeDone" id="';
-        html += i  + '"><img src="gfx/close.png" width="10"></button></li>';
+       html += '<li class="listaklar">' + done[i] + '<img src="gfx/close.png" class="removeDone" id="';
+       html += i  + '"></li>';
    }
     html += '</ul>';
     document.getElementById('todos').innerHTML = html;
-console.log(todos.length);
-
+    console.log(todos.length);
+    console.log(buttons3);
 
 
     var buttons = document.getElementsByClassName('remove');
@@ -127,12 +129,15 @@ console.log(todos.length);
     var buttons3 = document.getElementsByClassName('removeDone');
     var buttons4 = document.getElementsByClassName('prio');
     var buttons5 = document.getElementsByClassName('prioDown');
+
     for (i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', remove);
         buttons2[i].addEventListener('click', markAsDone);
-        buttons4[i].addEventListener('click', prio);
-        buttons5[i].addEventListener('click', prioDown);
     }
+    for (i = 0; i < buttons.length - 1; i++) {
+    buttons4[i].addEventListener('click', prio);
+    buttons5[i].addEventListener('click', prioDown);
+}
     for (i = 0; i < done.length; i++) {
       buttons3[i].addEventListener('click', removeDone);
   }
