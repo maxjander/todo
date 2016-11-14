@@ -11,7 +11,8 @@ a {
 
 #add {
     padding: 5px;
-    vertical-align:bottom;
+    align-items: baseline;
+    bottom: 0;
 
 }
 
@@ -24,10 +25,7 @@ a {
 #task {
     width: 70%;
     height :27px;
-    padding: 5px;
-    vertical-align:bottom;
-    font-size: 1.5rem;
-    font-family: Helvetica, Verdana, sans-serif;
+    bottom: 0;
 
 }
 
