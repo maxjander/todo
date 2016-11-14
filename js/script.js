@@ -19,27 +19,23 @@ function getDone(){
 
 }
 
-function prio(addsub) {
-   var prio = addsub;
-   var id = this.getAttribute('id');
-   var newid;
+function prio(){
+   var id = parseInt(this.getAttribute('id'));
    var todos = getTodos();
-
-   if (prio === 'sub'){
-      // prioritera ner uppgift
-
-   }
-   else if (prio === 'add') {
-      //prioritera upp uppgift
-
-   }
-   else {
-      console.log("Något gick fel"); // glöm ej att ta bort
-      return false;
-   }
-   todos.shift(id, 1);
+   var newid = parseInt(id - 1);
+     todos[id] = [todos[newid], todos[newid]=todos[id]][0];
    localStorage.setItem('todo', JSON.stringify(todos));
+show();
+}
 
+function prioDown(){
+   var id = parseInt(this.getAttribute('id'));
+   var todos = getTodos();
+   var newid = parseInt(id + 1);
+   todos[id] = [todos[newid], todos[newid]=todos[id]][0];
+   localStorage.setItem('todo', JSON.stringify(todos));
+   console.log(newid, id, todos);
+show();
 }
 
 function add() {
@@ -96,12 +92,20 @@ function markAsDone() {
 function show() {
     var todos = getTodos();
     var done = getDone();
-
     var html = '<ol>';
     for(var i=0; i<todos.length; i++) {
         html += '<li class="lista"> <span id="ID_';
-        html += i +'">' + todos[i] + '</span><button class="markAsDone" id="';
-        html += i  + '"><img src="gfx/check.png" width="10"></button> ' + '<button class="remove" id="';
+        html += i +'">' + todos[i] + '</span>';
+        if (i > 0){
+        html += '<button class="prio"id="';
+        html += i +'">UPP</button>';
+        }
+        if (i < todos.length - 1){
+        html += '<button class="prioDown"id="' + i +'">NER</button>';
+        }
+        html += '<button class="markAsDone" id="';
+        html += i  + '"><img src="gfx/check.png" width="10"></button> ';
+        html+= '<button class="remove" id="';
         html += i  + '"> <img src="gfx/close.png" width="10"></button></li>';
     }
     html += '</ol>';
@@ -113,18 +117,24 @@ function show() {
    }
     html += '</ul>';
     document.getElementById('todos').innerHTML = html;
+console.log(todos.length);
+
+
 
     var buttons = document.getElementsByClassName('remove');
     var buttons2 = document.getElementsByClassName('markAsDone');
     var buttons3 = document.getElementsByClassName('removeDone');
+    var buttons4 = document.getElementsByClassName('prio');
+    var buttons5 = document.getElementsByClassName('prioDown');
     for (i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', remove);
         buttons2[i].addEventListener('click', markAsDone);
+        buttons4[i].addEventListener('click', prio);
+        buttons5[i].addEventListener('click', prioDown);
     }
     for (i = 0; i < done.length; i++) {
       buttons3[i].addEventListener('click', removeDone);
   }
 }
-
 document.getElementById('add').addEventListener('click', add);
 show();
