@@ -1,4 +1,4 @@
-function get_todos() {
+function getTodos() {
     var todos = ["Strukturera upp din Todo-list",];
     var todos_str = localStorage.getItem('todo');
 
@@ -8,7 +8,7 @@ function get_todos() {
    // todos.push("Strukturera upp din Todo-list");
     return todos;
 }
-function get_done(){
+function getDone(){
    var done = [];
    var done_str = localStorage.getItem('done');
 
@@ -19,9 +19,32 @@ function get_done(){
 
 }
 
+function prio(addsub) {
+   var prio = addsub;
+   var id = this.getAttribute('id');
+   var newid;
+   var todos = getTodos();
+
+   if (prio === 'sub'){
+      // prioritera ner uppgift
+
+   }
+   else if (prio === 'add') {
+      //prioritera upp uppgift
+
+   }
+   else {
+      console.log("Något gick fel"); // glöm ej att ta bort
+      return false;
+   }
+   todos.shift(id, 1);
+   localStorage.setItem('todo', JSON.stringify(todos));
+
+}
+
 function add() {
     var task = document.getElementById('task').value;
-    var todos = get_todos();
+    var todos = getTodos();
 
     if (task.length === 0 ){
       alert("Du måste skriva in något du skall göra, ifall du inte har något att göra så är denna sida onödig för dig");
@@ -35,7 +58,7 @@ function add() {
 
 function remove() {
 var id = this.getAttribute('id');
-var todos = get_todos();
+var todos = getTodos();
    todos.splice(id, 1);
    localStorage.setItem('todo', JSON.stringify(todos));
 
@@ -45,7 +68,7 @@ var todos = get_todos();
 
 function removeDone() {
     var id = this.getAttribute('id');
-    var done = get_done();
+    var done = getDone();
     done.splice(id, 1);
     localStorage.setItem('done', JSON.stringify(done));
 
@@ -56,8 +79,8 @@ function removeDone() {
 function markAsDone() {
     var id = this.getAttribute('id');
     var task = document.getElementById("ID_"+id).innerHTML;
-    var todos = get_todos();
-    var done = get_done();
+    var todos = getTodos();
+    var done = getDone();
 
     done.push(task);
     localStorage.setItem('done', JSON.stringify(done));
@@ -71,8 +94,8 @@ function markAsDone() {
 
 
 function show() {
-    var todos = get_todos();
-    var done = get_done();
+    var todos = getTodos();
+    var done = getDone();
 
     var html = '<ol>';
     for(var i=0; i<todos.length; i++) {
