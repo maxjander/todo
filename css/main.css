@@ -3,6 +3,10 @@ body {
     color: white;
     background: white;
 }
+a {
+    text-decoration: none;
+    color: white;
+}
 button{
 
     	-moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
@@ -143,23 +147,24 @@ button:active {
 	top:1px;
 }
 .lista, .listaklar {
-width:95%;
+
 margin:0 auto;
-font-size: 1.8em;
+font-size: 1.7em;
 }
 
 .listaklar {
 font-style: italic;
 text-decoration: line-through;
-color: red;
-opacity: 0.2;
+color: lightgrey;
+opacity: 0.3;
+font-size: 1.4rem;
 }
 
 .lista ol{
 counter-reset: li;
 list-style: none;
 *list-style: decimal;
-font-size: 15px;
+font-size: 1em;
 font-family: 'Raleway', sans-serif;
 padding: 0;
 margin-bottom: 4em;

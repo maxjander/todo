@@ -101,8 +101,8 @@ function show() {
     for(var i=0; i<todos.length; i++) {
         html += '<li class="lista"> <span id="ID_';
         html += i +'">' + todos[i] + '</span><button class="markAsDone" id="';
-        html += i  + '"><img src="gfx/check.png" width="10"></button>' + '<button class="remove" id="';
-        html += i  + '"><img src="gfx/close.png" width="10"></button></li>';
+        html += i  + '"><img src="gfx/check.png" width="10"></button> ' + '<button class="remove" id="';
+        html += i  + '"> <img src="gfx/close.png" width="10"></button></li>';
     }
     html += '</ol>';
 
