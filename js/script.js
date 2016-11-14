@@ -96,19 +96,20 @@ function show() {
     for(var i=0; i<todos.length; i++) {
         html += '<li class="lista"> <span id="ID_';
         html += i +'">' + todos[i] + '</span>';
-        if (i > 0){
-        html += '<button class="prio"id="';
-        html += i +'">UPP</button>';
-        }
-        if (i < todos.length - 1){
-        html += '<button class="prioDown"id="' + i +'">NER</button>';
-        }
+
         html += '<button class="markAsDone" id="';
         html += i  + '"><img src="gfx/check.png" width="10"></button> ';
         html+= '<button class="remove" id="';
-        html += i  + '"> <img src="gfx/close.png" width="10"></button></li>';
+        html += i  + '"> <img src="gfx/close.png" width="10"></button>';
+        if (i > 0){
+        html += '<img class="prio"id="';
+        html += i +'" src=gfx/upp.png>';
+        }
+        if (i < todos.length - 1){
+        html += '<img class="prioDown"id="' + i +'" src="gfx/ner.png">';
+        }
     }
-    html += '</ol>';
+    html += '</li></ol>';
 
     html += '<ul>';
    for( i=0; i < done.length; i++) {

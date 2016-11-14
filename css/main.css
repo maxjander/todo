@@ -3,6 +3,8 @@
 
 
 }
+
+
 body {
     font-family: sans-serif;
     color: white;
@@ -213,4 +215,8 @@ border: .3em solid #fff;
 text-align: center;
 font-weight: bold;
 color:#FFF;
+}
+
+.prio, .prioDown{
+    float: right;
 }
