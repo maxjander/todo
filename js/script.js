@@ -26,11 +26,11 @@ function setItem(task, array){
 }
 
 function prio(){
-        id = parseInt(this.getAttribute('id'));
-        newid = parseInt(id - 1);
-        todos[id] = [todos[newid], todos[newid]=todos[id]][0];
-        setItem('todo', todos);
-        show();
+    id = parseInt(this.getAttribute('id'));
+    newid = parseInt(id - 1);
+    todos[id] = [todos[newid], todos[newid]=todos[id]][0];
+    setItem('todo', todos);
+    show();
 }
 
 function prioDown(){
@@ -56,15 +56,15 @@ function add() {
      }
 
 function remove() {
-var id = this.getAttribute('id');
-   todos.splice(id, 1);
-   setItem('todo', todos);
+    id = this.getAttribute('id');
+    todos.splice(id, 1);
+    setItem('todo', todos);
 
     show();
 }
 
 function removeDone() {
-    var id = this.getAttribute('id');
+    id = this.getAttribute('id');
     done.splice(id, 1);
     setItem('done', done);
     show();
@@ -72,17 +72,14 @@ function removeDone() {
 }
 
 function markAsDone() {
-    var id = this.getAttribute('id');
+    id = this.getAttribute('id');
     var task = document.getElementById("ID_"+id).innerHTML;
     done.push(task);
     setItem('done', done);
-
     todos.splice(id, 1);
     setItem('todo', todos);
-
     show();
 }
-
 
 function show() {
     todos = getTodos();
@@ -111,9 +108,6 @@ function show() {
    }
    html += '</ul>';
    document.getElementById('todos').innerHTML = html;
-   console.log(todos.length);
-   console.log(buttons3);
-
 
     var buttons = document.getElementsByClassName('remove');
     var buttons2 = document.getElementsByClassName('markAsDone');
@@ -135,5 +129,4 @@ function show() {
 }
 document.getElementById('add').addEventListener('click', add);
 var test = document.getElementById('task').addEventListener('keydown', 13, add);
-console.log(test);
 show();
