@@ -1,5 +1,9 @@
+
+var todos = ["Strukturera upp din Todo-list",];
+var done = ["Här nedanför står de uppgifter du slutfört!",];
+var id, newid;
+
 function getTodos() {
-    var todos = ["Strukturera upp din Todo-list",];
     var todos_str = localStorage.getItem('todo');
 
     if (todos_str !== null) {
@@ -9,9 +13,7 @@ function getTodos() {
     return todos;
 }
 function getDone(){
-   var done = [];
    var done_str = localStorage.getItem('done');
-
    if (done_str !== null) {
       done = JSON.parse(done_str);
    }
@@ -19,55 +21,52 @@ function getDone(){
 
 }
 
+function setItem(task, array){
+      localStorage.setItem(task, JSON.stringify(array));
+}
+
 function prio(){
-   var id = parseInt(this.getAttribute('id'));
-   var todos = getTodos();
-   var newid = parseInt(id - 1);
-     todos[id] = [todos[newid], todos[newid]=todos[id]][0];
-   localStorage.setItem('todo', JSON.stringify(todos));
-show();
+        id = parseInt(this.getAttribute('id'));
+        newid = parseInt(id - 1);
+        todos[id] = [todos[newid], todos[newid]=todos[id]][0];
+        setItem('todo', todos);
+        show();
 }
 
 function prioDown(){
-   var id = parseInt(this.getAttribute('id'));
-   var todos = getTodos();
-   var newid = parseInt(id + 1);
-   todos[id] = [todos[newid], todos[newid]=todos[id]][0];
-   localStorage.setItem('todo', JSON.stringify(todos));
-   console.log(newid, id, todos);
-show();
+    id = parseInt(this.getAttribute('id'));
+    newid = parseInt(id + 1);
+    todos[id] = [todos[newid], todos[newid]=todos[id]][0];
+    setItem('todo', todos);
+    console.log(newid, id, todos);
+    show();
 }
 
 function add() {
     var task = document.getElementById('task').value;
-    var todos = getTodos();
 
     if (task.length === 0 ){
       alert("Du måste skriva in något du skall göra, ifall du inte har något att göra så är denna sida onödig för dig");
-      } else {
-            todos.push(task);
-            localStorage.setItem('todo', JSON.stringify(todos));
-            show();
-            return false;
-         }
-}
+    }
+    else {
+        todos.push(task);
+        setItem('todo', todos);
+        show();
+        }
+     }
 
 function remove() {
 var id = this.getAttribute('id');
-var todos = getTodos();
    todos.splice(id, 1);
-   localStorage.setItem('todo', JSON.stringify(todos));
+   setItem('todo', todos);
 
     show();
-    return false;
 }
 
 function removeDone() {
     var id = this.getAttribute('id');
-    var done = getDone();
     done.splice(id, 1);
-    localStorage.setItem('done', JSON.stringify(done));
-
+    setItem('done', done);
     show();
     return false;
 }
@@ -75,53 +74,45 @@ function removeDone() {
 function markAsDone() {
     var id = this.getAttribute('id');
     var task = document.getElementById("ID_"+id).innerHTML;
-    var todos = getTodos();
-    var done = getDone();
-
     done.push(task);
-    localStorage.setItem('done', JSON.stringify(done));
+    setItem('done', done);
 
     todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos));
+    setItem('todo', todos);
 
     show();
-    return false;
 }
 
 
 function show() {
-    var todos = getTodos();
-    var done = getDone();
+    todos = getTodos();
+    done = getDone();
     var html = '<ol>';
+
     for(var i=0; i<todos.length; i++) {
         html += '<li class="lista"> <span id="ID_';
         html += i +'">' + todos[i] + '</span>';
-
         html += '<img src="gfx/check.png" class="markAsDone" id="' + i  + '">';
         html+= ' <img src="gfx/close.png" class="remove" id="' + i  + '">';
-
         if (i > 0){
         html += '<img class="prio"id="';
         html += i +'" src=gfx/upp.png>';
-        }
-
+            }
         if (i < todos.length - 1){
         html += '<img class="prioDown"id="' + i +'" src="gfx/ner.png">';
-        }
-
+            }
         html += '</li>';
-    }
+        }
     html += '</ol>';
-
     html += '<ul>';
    for( i=0; i < done.length; i++) {
-       html += '<li class="listaklar">' + done[i] + '<img src="gfx/close.png" class="removeDone" id="';
-       html += i  + '"></li>';
+        html += '<li class="listaklar">' + done[i] + '<img src="gfx/close.png" class="removeDone" id="';
+        html += i  + '"></li>';
    }
-    html += '</ul>';
-    document.getElementById('todos').innerHTML = html;
-    console.log(todos.length);
-    console.log(buttons3);
+   html += '</ul>';
+   document.getElementById('todos').innerHTML = html;
+   console.log(todos.length);
+   console.log(buttons3);
 
 
     var buttons = document.getElementsByClassName('remove');
@@ -137,10 +128,12 @@ function show() {
     for (i = 0; i < buttons.length - 1; i++) {
     buttons4[i].addEventListener('click', prio);
     buttons5[i].addEventListener('click', prioDown);
-}
+    }
     for (i = 0; i < done.length; i++) {
       buttons3[i].addEventListener('click', removeDone);
   }
 }
 document.getElementById('add').addEventListener('click', add);
+var test = document.getElementById('task').addEventListener('keydown', 13, add);
+console.log(test);
 show();
