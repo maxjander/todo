@@ -1,24 +1,23 @@
-
-var todos = ["Strukturera upp din Todo-list",];
-var done = ["Här nedanför står de uppgifter du slutfört!",];
+var todos = getTodos('todo'); // + "Strukturera upp din Todo-list";
+var done = getTodos('done'); // + "Här nedanför står de uppgifter du slutfört!" ;
 var id, newid;
 
-function getTodos() {
-    var todos_str = localStorage.getItem('todo');
-
-    if (todos_str !== null) {
-        todos = JSON.parse(todos_str);
+function getTodos(input) {
+    var todos_str = localStorage.getItem(input);
+    if (input === 'todo'){
+        if (todos_str !== null) {
+         todos = JSON.parse(todos_str);
+     } else {   todos = [];
+                todos.push("Strukturera upp din Todo-list"); }
+        return todos;
+    } else if (input === 'done') {
+        //done = ["Här nedanför står de uppgifter du slutfört!",];
+            if (todos_str !== null) {
+             done = JSON.parse(todos_str);
+            }else { done = [];
+            done.push("Här nedanför står de uppgifter du slutfört!"); }
+        return done;
     }
-   // todos.push("Strukturera upp din Todo-list");
-    return todos;
-}
-function getDone(){
-   var done_str = localStorage.getItem('done');
-   if (done_str !== null) {
-      done = JSON.parse(done_str);
-   }
-   return done;
-
 }
 
 function setItem(task, array){
@@ -27,24 +26,19 @@ function setItem(task, array){
 
 function prio(){
     id = parseInt(this.getAttribute('id'));
-    newid = parseInt(id - 1);
+    var thisClass = this.getAttribute('class');
+    if (thisClass === 'prio'){
+        newid = parseInt(id - 1);
+    } else if (thisClass === 'prioDown'){
+        newid = parseInt(id + 1);
+    }
     todos[id] = [todos[newid], todos[newid]=todos[id]][0];
     setItem('todo', todos);
-    show();
-}
-
-function prioDown(){
-    id = parseInt(this.getAttribute('id'));
-    newid = parseInt(id + 1);
-    todos[id] = [todos[newid], todos[newid]=todos[id]][0];
-    setItem('todo', todos);
-    console.log(newid, id, todos);
     show();
 }
 
 function add() {
     var task = document.getElementById('task').value;
-
     if (task.length === 0 ){
       alert("Du måste skriva in något du skall göra, ifall du inte har något att göra så är denna sida onödig för dig");
     }
@@ -56,19 +50,16 @@ function add() {
      }
 
 function remove() {
-    id = this.getAttribute('id');
-    todos.splice(id, 1);
-    setItem('todo', todos);
-
+    id = parseInt(this.getAttribute('id'));
+    thisClass = this.getAttribute('class');
+    if (thisClass === 'remove'){
+        todos.splice(id, 1);
+        setItem('todo', todos);
+    } else if (thisClass === 'removeDone'){
+        done.splice(id, 1);
+        setItem('done', done);
+    }
     show();
-}
-
-function removeDone() {
-    id = this.getAttribute('id');
-    done.splice(id, 1);
-    setItem('done', done);
-    show();
-    return false;
 }
 
 function markAsDone() {
@@ -82,11 +73,11 @@ function markAsDone() {
 }
 
 function show() {
-    todos = getTodos();
-    done = getDone();
+    todos = getTodos('todo');
+    done = getTodos('done');
     var html = '<ol>';
 
-    for(var i=0; i<todos.length; i++) {
+    for(var i=0; i< todos.length; i++) {
         html += '<li class="lista"> <span id="ID_';
         html += i +'">' + todos[i] + '</span>';
         html += '<img src="gfx/check.png" class="markAsDone" id="' + i  + '">';
@@ -108,7 +99,6 @@ function show() {
    }
    html += '</ul>';
    document.getElementById('todos').innerHTML = html;
-
     var buttons = document.getElementsByClassName('remove');
     var buttons2 = document.getElementsByClassName('markAsDone');
     var buttons3 = document.getElementsByClassName('removeDone');
@@ -121,12 +111,11 @@ function show() {
     }
     for (i = 0; i < buttons.length - 1; i++) {
     buttons4[i].addEventListener('click', prio);
-    buttons5[i].addEventListener('click', prioDown);
+    buttons5[i].addEventListener('click', prio);
     }
     for (i = 0; i < done.length; i++) {
-      buttons3[i].addEventListener('click', removeDone);
-  }
+      buttons3[i].addEventListener('click', remove);
+     }
 }
 document.getElementById('add').addEventListener('click', add);
-var test = document.getElementById('task').addEventListener('keydown', 13, add);
 show();
