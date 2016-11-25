@@ -1,8 +1,11 @@
 var todos = getTodos('todo'); // + "Strukturera upp din Todo-list";
 var done = getTodos('done'); // + "Här nedanför står de uppgifter du slutfört!" ;
-var id, newid;
+var id, newid; //Deklarerar några variablar som kommer användas
 
-function getTodos(input) {
+
+// en funktion flr att hämta ut dina sparade uppgifter, om inte det är första gången du är inne på sidan, då skapar den en uppgift för
+//saker som skall göras och har gjorts
+function getTodos(input) { //arbetar med två olika här, skrev dessa två som 2 funktioner först men byggt ihop de med hjälp av parametrar
     var todos_str = localStorage.getItem(input);
     if (input === 'todo'){
         if (todos_str !== null) {
@@ -23,8 +26,8 @@ function getTodos(input) {
 function setItem(task, array){
       localStorage.setItem(task, JSON.stringify(array));
 }
-
-function prio(){
+// funktion för att prioritera upp eller ner
+function prio(){  //arbetar med två olika här, skrev dessa två som 2 funktioner först men byggt ihop de med hjälp av parametrar beroende på vilken class knappen har som manb trycker på
     id = parseInt(this.getAttribute('id'));
     var thisClass = this.getAttribute('class');
     if (thisClass === 'prio'){
@@ -36,7 +39,7 @@ function prio(){
     setItem('todo', todos);
     show();
 }
-
+// funktion för att lägga till nya uppgifter
 function add() {
     var task = document.getElementById('task').value;
     if (task.length === 0 ){
@@ -49,6 +52,7 @@ function add() {
         }
      }
 
+     //function för att ta bort uppgifter, både färdiga och icke färdiga
 function remove() {
     id = parseInt(this.getAttribute('id'));
     thisClass = this.getAttribute('class');
@@ -62,6 +66,7 @@ function remove() {
     show();
 }
 
+//function för att markera som klar
 function markAsDone() {
     id = this.getAttribute('id');
     var task = document.getElementById("ID_"+id).innerHTML;
@@ -72,6 +77,7 @@ function markAsDone() {
     show();
 }
 
+// här är den stora functionen,  allt för att skriva ut de två olika listorna
 function show() {
     todos = getTodos('todo');
     done = getTodos('done');
@@ -99,6 +105,7 @@ function show() {
    }
    html += '</ul>';
    document.getElementById('todos').innerHTML = html;
+
     var buttons = document.getElementsByClassName('remove');
     var buttons2 = document.getElementsByClassName('markAsDone');
     var buttons3 = document.getElementsByClassName('removeDone');
@@ -118,4 +125,7 @@ function show() {
      }
 }
 document.getElementById('add').addEventListener('click', add);
+document.getElementById('add').addEventListener('keypress' === '13', add);
+
+//kalla på den stora funktionen för att visa alting på sidan
 show();
