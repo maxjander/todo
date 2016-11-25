@@ -1,7 +1,9 @@
+
 body {
     font-family: Helvetica, Verdana, sans-serif;
     color: white;
     background: white;
+    font-size: 1em;
 }
 a {
     text-decoration: none;
