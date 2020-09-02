@@ -1,15 +1,15 @@
 # Todo APP
 
-1. lägga till syssla
-2. hantering av sysslor (object, array?)
+- lägga till syssla
+- hantering av sysslor (object, array?)
     * lagring i (xml,txt) fil?
         * databas såsom SQL el mongoDB
-3. Markera som klar
-4. hamna i ny lista över färdiga sysslor
+- Markera som klar
+- hamna i ny lista över färdiga sysslor
     * bara ha to bort knappen kvar // Eller kopiera syssla tillaka till ej klara
-5. Ta bort syssla
-6. snygg hantering i html
-7. Krydda med css
+- Ta bort syssla
+- snygg hantering i html
+- Krydda med css
 
 För G krävs det att du uppfyller interaktiveten ovan.
 Det betyder att man ska kunna lägga till en syssla,
