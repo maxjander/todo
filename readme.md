@@ -1,4 +1,4 @@
-#Todo APP
+# Todo APP
 
 1. lägga till syssla
 2. hantering av sysslor (object, array?)
